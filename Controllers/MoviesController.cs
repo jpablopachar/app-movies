@@ -115,5 +115,26 @@ namespace app_movies.Controllers
 
             return View(res);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, NewMovieVM newMovieVM)
+        {
+            if (id != newMovieVM.Id) return View("NotFound");
+
+            if (!ModelState.IsValid)
+            {
+                var movieDropdownsData = await _moviesService.GetNewMovieDropdownsValues();
+
+                ViewBag.Cinemas = new SelectList(movieDropdownsData.Cinemas, "Id", "Name");
+                ViewBag.Producers = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
+                ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");
+
+                return View(newMovieVM);
+            }
+
+            await _moviesService.UpdateMovieAsync(newMovieVM);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
