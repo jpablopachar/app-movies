@@ -345,7 +345,7 @@ namespace app_movies.Data
                         FullName = "Admin User"
                     };
 
-                    await userManager.CreateAsync(newAdminUser, "password123@");
+                    await userManager.CreateAsync(newAdminUser, "Pass4Admin");
                     await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
                 }
 
@@ -363,7 +363,7 @@ namespace app_movies.Data
                         FullName = "App User"
                     };
 
-                    await userManager.CreateAsync(newAppUser, "password123@");
+                    await userManager.CreateAsync(newAppUser, "Pass4Admin");
                     await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
                 }
             }

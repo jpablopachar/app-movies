@@ -29,6 +29,7 @@ namespace app_movies.Controllers
 
         public IActionResult Login() => View(new LoginVM());
 
+        [HttpPost]
         public async Task<IActionResult> Login(LoginVM loginVM)
         {
             if (!ModelState.IsValid) return View(loginVM);
@@ -58,6 +59,7 @@ namespace app_movies.Controllers
 
         public IActionResult Register() => View(new RegisterVM());
 
+        [HttpPost]
         public async Task<IActionResult> Register(RegisterVM registerVM)
         {
             if (!ModelState.IsValid) return View(registerVM);

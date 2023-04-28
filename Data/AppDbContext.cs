@@ -8,13 +8,13 @@ namespace app_movies.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        protected override void OnModelCreating(ModelBuilder modeBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modeBuilder.Entity<ActorMovie>().HasKey(actorMovie => new { actorMovie.ActorId, actorMovie.MovieId });
-            modeBuilder.Entity<ActorMovie>().HasOne(movie => movie.Movie).WithMany(actorMovie => actorMovie.ActorsMovies).HasForeignKey(movie => movie.MovieId);
-            modeBuilder.Entity<ActorMovie>().HasOne(movie => movie.Actor).WithMany(actorMovie => actorMovie.ActorsMovies).HasForeignKey(movie => movie.ActorId);
+            modelBuilder.Entity<ActorMovie>().HasKey(actorMovie => new { actorMovie.ActorId, actorMovie.MovieId });
+            modelBuilder.Entity<ActorMovie>().HasOne(movie => movie.Movie).WithMany(actorMovie => actorMovie.ActorsMovies).HasForeignKey(movie => movie.MovieId);
+            modelBuilder.Entity<ActorMovie>().HasOne(movie => movie.Actor).WithMany(actorMovie => actorMovie.ActorsMovies).HasForeignKey(movie => movie.ActorId);
 
-            base.OnModelCreating(modeBuilder);
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Actor> Actors { get; set; }
