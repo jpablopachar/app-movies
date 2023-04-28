@@ -1,8 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using app_movies.Data.Base;
 
 namespace app_movies.Models
 {
-    public class Cinema
+    public class Cinema : IEntityBase
     {
         [Key]
         public int Id { get; set; }
